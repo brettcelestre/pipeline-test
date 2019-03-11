@@ -15,11 +15,11 @@ jobs:
     working_directory: ~/pipeline-test
     steps:
       - checkout
-			# - run:
-			# 		name: Echo Test
-			# 		command: |
-			# 			echo "echo test 123"
-			# - run:
+      # - run:
+      # 		name: Echo Test
+      # 		command: |
+      # 			echo "echo test 123"
+      # - run:
       #     name: Checking out branch: prod
       #     command: |
       #       git checkout prod
