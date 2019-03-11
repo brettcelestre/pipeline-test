@@ -19,7 +19,7 @@ jobs:
     steps:
       - checkout
 			
-			-run:
+			- srun:
 				name: Echo Test
 				command: |
 					echo "echo test 123"
