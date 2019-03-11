@@ -15,24 +15,24 @@ jobs:
     working_directory: ~/pipeline-test
     steps:
       - checkout
-			- run:
-					name: Echo Test
-					command: |
-						echo "echo test 123"
-			- run:
-          name: Checking out branch: prod
-          command: |
-            git checkout prod
+			# - run:
+			# 		name: Echo Test
+			# 		command: |
+			# 			echo "echo test 123"
+			# - run:
+      #     name: Checking out branch: prod
+      #     command: |
+      #       git checkout prod
       # Download and cache dependencies
       #- restore_cache:
           #keys:
             #- v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             #- v1-dependencies-
-      - run: 
-				name: Installing Dependencies
-				command: |
-					npm i
+      # - run: 
+      #     name: Installing Dependencies
+      #     command: |
+      #       npm i
       #- save_cache:
           #paths:
           #  - node_modules
