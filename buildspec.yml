@@ -29,6 +29,7 @@ phases:
 
     - echo Printing out all contents of this folder
     - ls -a
+
     
     # - echo Downloading Media from S3
     # - aws s3 cp s3://brett-portfolio-image-vault . --recursive
