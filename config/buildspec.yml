@@ -26,7 +26,7 @@ phases:
 
     - echo Downloading Media From S3
     - aws s3 cp s3://bcele-site-test-123 . --recursive
-    
+
     - echo Printing out all contents of this folder
     - ls -a
     
@@ -38,7 +38,6 @@ phases:
     # - mv gallery/photography photography
     # - mv gallery/short-films short-films
     # - mv gallery/spatial spatial
-
     
     #- echo Build started
     #- npm run build
