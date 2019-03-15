@@ -18,11 +18,11 @@ phases:
 
   build:
     commands:
-    - echo Current Branch
-    - git branch | grep \* | cut -d ' ' -f2
+    # - echo Current Branch
+    # - git branch | grep \* | cut -d ' ' -f2
 
-    - echo Checking Out Branch - Prod
-    - git checkout prod
+    # - echo Checking Out Branch - Prod
+    # - git checkout prod
 
     - echo Downloading Media From S3
     - aws s3 cp s3://bcele-site-test-123 . --recursive
