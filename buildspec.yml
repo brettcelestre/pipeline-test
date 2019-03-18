@@ -2,7 +2,8 @@ version: 0.2
 
 env:
   variables:
-    S3_BUCKET: "bcele-site-test-123"
+    S3_GALLERY: "bcele-site-test-123"
+    S3_TARGET: "bcele-ci-upload-test"
     BUILD_ENV : "prod"
     BUILD_DIR : "dist"
 
@@ -18,19 +19,15 @@ phases:
 
   build:
     commands:
-    # - echo Current Branch
-    # - git branch | grep \* | cut -d ' ' -f2
-
-    # - echo Checking Out Branch - Prod
-    # - git checkout prod
+    - echo Creating dist directory
+    - mkdir dist
 
     - echo Downloading Media From S3
-    - aws s3 cp s3://bcele-site-test-123 . --recursive
+    - aws s3 cp s3://${S3_GALLERY} ./${BUILD_DIR} --recursive
 
     - echo Printing out all contents of this folder
     - ls -a
 
-    
     # - echo Downloading Media from S3
     # - aws s3 cp s3://brett-portfolio-image-vault . --recursive
     # - mv gallery/about about
@@ -45,13 +42,15 @@ phases:
 
   post_build:
     commands:
-    #- aws s3 rm s3://${S3_BUCKET} --recursive
-    #- echo S3 bucket is cleared
-    #- aws s3 cp ${BUILD_DIR}/* s3://${S3_BUCKET} --acl public-read --recursive
-    #- echo Build completed on `date`
+    - aws s3 rm s3://${S3_TARGET} --recursive
+    - echo S3 bucket is cleared
+
+    - aws s3 cp ${BUILD_DIR}/* s3://${S3_TARGET} --acl public-read --recursive
+    - echo Build completed on `date`
 
 artifacts:
   files:
     - '**/*'
   discard-paths: yes
   base-directory: 'dist*'
+  # base-directory: '*'
