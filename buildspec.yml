@@ -6,6 +6,7 @@ env:
     S3_TARGET: "bcele-ci-upload-test"
     BUILD_ENV : "prod"
     BUILD_DIR : "dist"
+    BUILD_CONTENT: "content"
 
 phases:
   install:
@@ -20,12 +21,18 @@ phases:
   build:
     commands:
     - echo Creating dist directory
-    - mkdir dist
+    # - mkdir dist
+    - mkdir ${BUILD_CONTENT}
 
     - echo Downloading Media From S3
-    - aws s3 cp s3://${S3_GALLERY} ./${BUILD_DIR} --recursive
+    # - aws s3 cp s3://${S3_GALLERY} ./${BUILD_DIR} --recursive
+    - aws s3 cp s3://${S3_GALLERY} ./${BUILD_CONTENT} --recursive
 
     - echo Printing out all contents of this folder
+    - ls -a
+
+    - echo Printing out all contents of ${BUILD_CONTENT}
+    - cd /${BUILD_CONTENT}
     - ls -a
 
     # - echo Downloading Media from S3
@@ -42,11 +49,11 @@ phases:
 
   post_build:
     commands:
-    - aws s3 rm s3://${S3_TARGET} --recursive
-    - echo S3 bucket is cleared
+    # - aws s3 rm s3://${S3_TARGET} --recursive
+    # - echo S3 bucket is cleared
 
-    - aws s3 cp ${BUILD_DIR}/* s3://${S3_TARGET} --acl public-read --recursive
-    - echo Build completed on `date`
+    # - aws s3 cp ${BUILD_DIR}/* s3://${S3_TARGET} --acl public-read --recursive
+    # - echo Build completed on `date`
 
 artifacts:
   files:
