@@ -51,13 +51,14 @@ phases:
     - aws s3 rm s3://${S3_TARGET} --recursive
     - echo S3 bucket is cleared
 
-    - aws s3 cp ${BUILD_CONTENT}/gallery/ s3://${S3_TARGET} --acl public-read --recursive --include "*.jpg"
+    - aws s3 cp ${BUILD_CONTENT}/gallery/ s3://${S3_TARGET} --acl public-read --recursive --include "*.jpg" --exclude "*.png"
     # - aws s3 cp ${BUILD_CONTENT}/* s3://${S3_TARGET}  --recursive
     - echo Build completed on `date`
 
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: yes
-  base-directory: 'dist*'
-  # base-directory: '*'
+# artifacts:
+#   files:
+#     - '**/*'
+#     # - 
+#   discard-paths: yes
+#   # base-directory: 'dist*'
+#   base-directory: 'content/*'
