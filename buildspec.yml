@@ -2,11 +2,11 @@ version: 0.2
 
 env:
   variables:
-    S3_GALLERY: "bcele-site-test-123"
-    S3_TARGET: "bcele-ci-upload-test"
-    BUILD_ENV : "prod"
-    BUILD_DIR : "dist"
-    BUILD_CONTENT: "content"
+    S3_GALLERY    : "bcele-site-test-123"
+    S3_TARGET     : "bcele-ci-upload-test"
+    BUILD_ENV     : "prod"
+    BUILD_DIR     : "dist"
+    BUILD_CONTENT : "content"
 
 phases:
   install:
@@ -51,14 +51,14 @@ phases:
     - aws s3 rm s3://${S3_TARGET} --recursive
     - echo S3 bucket is cleared
 
-    - aws s3 cp ${BUILD_CONTENT}/gallery/ s3://${S3_TARGET} --acl public-read --recursive --include "*.jpg" --exclude "*.png"
-    # - aws s3 cp ${BUILD_CONTENT}/* s3://${S3_TARGET}  --recursive
-    - echo Build completed on `date`
+    # Works
+    # - aws s3 cp ${BUILD_CONTENT}/gallery/ s3://${S3_TARGET} --acl public-read --recursive --include "*.jpg" --exclude "*.png"
+    # - echo Build completed on `date`
 
-# artifacts:
-#   files:
-#     - '**/*'
+artifacts:
+  files:
+    - '**/*'
 #     # - 
-#   discard-paths: yes
+  discard-paths: yes
 #   # base-directory: 'dist*'
-#   base-directory: 'content/*'
+  base-directory: 'content*'
