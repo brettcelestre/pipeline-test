@@ -20,8 +20,8 @@ phases:
 
   build:
     commands:
-    - echo Creating dist directory
-    # - mkdir dist
+    - echo Creating dist and content directory
+    - mkdir dist
     - mkdir ${BUILD_CONTENT}
 
     - echo Downloading Media From S3
@@ -52,6 +52,7 @@ phases:
     - echo S3 bucket is cleared
 
     - aws s3 cp ${BUILD_CONTENT}/* s3://${S3_TARGET} --acl public-read --recursive
+    # - aws s3 cp ${BUILD_CONTENT}/* s3://${S3_TARGET}  --recursive
     - echo Build completed on `date`
 
 artifacts:
